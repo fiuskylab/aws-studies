@@ -56,13 +56,27 @@ func (q *Queue) Push(msg string) error {
 	return err
 }
 
-func (q *Queue) Pop() (*sqs.Message, error) {
+func (q *Queue) Get() (*sqs.Message, error) {
 	msgOutput, err := q.SQS.ReceiveMessage(&sqs.ReceiveMessageInput{
 		MessageAttributeNames: []*string{
 			aws.String(sqs.QueueAttributeNameAll),
 		},
 		QueueUrl: q.QueueURL.QueueUrl,
 	})
-
 	return msgOutput.Messages[0], err
+}
+
+func (q *Queue) Pop() (*sqs.Message, error) {
+	msg, err := q.Get()
+
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = q.SQS.DeleteMessage(&sqs.DeleteMessageInput{
+		QueueUrl:      q.QueueURL.QueueUrl,
+		ReceiptHandle: msg.ReceiptHandle,
+	})
+
+	return msg, err
 }
