@@ -16,8 +16,9 @@ type Common struct {
 }
 
 type Env struct {
-	AWSRegion string
-	SQSName   string
+	AWSRegion  string
+	SQSName    string
+	SQSGroupID string
 }
 
 func NewCommon() *Common {
@@ -29,8 +30,9 @@ func NewCommon() *Common {
 
 	c := Common{
 		Env: Env{
-			AWSRegion: os.Getenv("AWS_REGION"),
-			SQSName:   os.Getenv("SQS_NAME"),
+			AWSRegion:  os.Getenv("AWS_REGION"),
+			SQSName:    os.Getenv("SQS_NAME"),
+			SQSGroupID: os.Getenv("SQS_GROUP_ID"),
 		},
 		Logger: l,
 	}
