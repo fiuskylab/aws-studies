@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/fiuskylab/aws-studies.git/internal"
-	"github.com/fiuskylab/aws-studies.git/sqs/queue"
+	"github.com/fiuskylab/aws-studies/sqs/internal"
+	"github.com/fiuskylab/aws-studies/sqs/queue"
 )
 
 func main() {

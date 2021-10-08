@@ -3,7 +3,7 @@ package queue
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/sqs"
-	"github.com/fiuskylab/aws-studies.git/internal"
+	"github.com/fiuskylab/aws-studies/sqs/internal"
 )
 
 // Queue
